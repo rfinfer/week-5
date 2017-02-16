@@ -2,7 +2,7 @@
   Set up our map
 ===================== */
 var map = L.map('map', {
-  center: [39.9522, -75.1639],
+  center: [39.945200, -75.1639],
   zoom: 14
 });
 var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
@@ -107,6 +107,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   Task 3: Getting (reading) input values
     Write the code necessary to read from your input form and return a javascript object (with keys
     to clarify the meaning of each value) that has all the data that's stored in your form.
+    ->function that will read from input form and produce an input. the object will keep track of the thing
 
   Task 4: Enable user interaction with the form
     At this point, we're really only using HTML input fields as a kind of storage. We create some data,
@@ -169,5 +170,64 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
+    $("#text-label1").text("First name");
+    $("#text-label2").text("Last Name");
+    $("#text-label3").text("occupation");
+    $("#number-label").text("age");
+    $("#checkbox-label1").text("either check this or don't");
+    $("#checkbox-label2").text("this one too");
+    $("#color-label").text("favorite color");
+    $("#latitude-label").text("Latitude");
+    $("#longitude-label").text("Longitude");
+    $("#place-label").text("Place description");
+    $("#color-label2").text("Place color");
+
+
+    $("#text-input1").val("Rachel");
+    $("#text-input2").val("Finfer");
+    $("#text-input3").val("student");
+    $("#numeric-input").val(27);
+    $("#cbox-input1").prop("checked", true);
+    $("#cbox-input2").prop("checked", true);
+    $("#color-input").val("#4286f4");
+    $("#numeric-input2").val(39.945200);
+    $("#numeric-input3").val(-75.216439);
+    $("#place-label").val("home");
+    $("#color-label2").val("#a0bc3c");
+
+
+var form = {};
+  form.field1= $("#text-input1").val();
+  form.field2= $("#text-input2").val();
+  form.field3= $("#text-input3").val();
+  form.field4= $("#numeric-input").val();
+  form.field5= $("#cbox-input1").prop("checked");
+  form.field6= $("#cbox-input2").prop("checked");
+  form.field7= $("#color-input").val();
+  form.field8= $("#latitude-label").val();
+  form.field9= $("#longitude-label").val();
+  form.field10= $("#place-label").val();
+  form.field11= $("#color-label2").val();
+  console.log(form);
+
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
+  $("#numeric-input2").prop('disabled', false);
+  $("#numeric-input3").prop('disabled', false);
+  $("#place-input").prop('disabled', false);
+  $("#color-input2").prop('disabled', false);
+
+$("body > div.sidebar > button").click(form, console.log(form));
+console.log("printing",[$("#numeric-input2").val(), $("#numeric-input3").val() ]);
+var marker = L.circleMarker([$("#numeric-input2").val(),$("#numeric-input3").val()], {color:form.field11}).addTo(map);
+marker.bindPopup($("#place-input").val());
+marker.color($("#color-input2"));
+
+
+  // Do your stuff here{color:$("#color-input2").val()}.bindPopup=$("#place-input").val().
 });
